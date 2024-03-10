@@ -1,5 +1,10 @@
 body {
   background-image: url("https://www.ibackdrop.com/cdn/shop/products/ChildrenCartoonZooBackgroundPhotoBackdropforBabyShowerIBD-19887.jpg?v=1605693141");
+  margin: 0;
+  padding: 0;
+
+  background-size: cover;
+  background-position: center;
 }
 
 nav {
@@ -47,4 +52,33 @@ h1 {
   color: rgb(158, 0, 0);
   /* color: #FF5722; <option>*/
   text-shadow: 4px 2px rgb(0 0 0 / 67);
+}
+
+.animal-card {
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.animal-card .card-img-top {
+  width: 100%;
+  height: auto;
+
+}
+
+.animal-card .card-body {
+  padding: 10px;
+}
+
+.animal-card .card-text {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.animal-card .card-text:last-child {
+  margin-bottom: 0;
 }

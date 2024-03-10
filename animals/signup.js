@@ -1,3 +1,4 @@
+
 function createNewVisitor(event) {
   // ביטול התנהגות דיפולטיבית של שליחת טופס
   event.preventDefault();
@@ -11,7 +12,7 @@ function createNewVisitor(event) {
   };
   console.log(user);
 
-  localStorage.setItem("user1", JSON.stringify(user));
+  // localStorage.setItem("user1", JSON.stringify(user));
 
   let visitorForView = [...JSON.parse(localStorage.getItem("visitors"))];
   visitorForView.push(user);
@@ -135,6 +136,8 @@ function createNewVisitor(event) {
   };
 
   //בסוף הלוגיקה נקפוץ לדף הרשמה
+  // window.location.href = "http://127.0.0.1:5501/animals/login.html";
+  // בסוף הלוגיקה נקפוץ לדף הרשמה
   // window.location.href = "http://127.0.0.1:5501/animals/login.html";
 }
 

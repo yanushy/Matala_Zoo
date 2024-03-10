@@ -14,7 +14,7 @@ const getVisitorHTMLCard = (visit) => {
         <img class="card-img-top" src="${visit.thumbImage}" alt="${visit.name}"/>
         <div class="card-body">
           <p class="card-text">${visit.name}</p>
-          <p class="card-text">${visit.coins}&#128176;</p>
+          <p class="card-text">${visit.i}&#128176;</p>
         </div>
       </div>`;
 
@@ -31,10 +31,24 @@ const getCloseModalHTMLButton = () => {
   closeButton.addEventListener("click", () => dialog.close());
   return closeButton;
 };
+const getLoginModalBtn = (visit) => {
+  const getLoginModalBtn = document.createElement("button");
+  getLoginModalBtn.innerText = "Log In";
+  getLoginModalBtn.addEventListener("click", () => {
+    localStorage.setItem("LogUser", JSON.stringify(visit));
 
+    window.location.href = "./zoo.html";
+  });
+  return getLoginModalBtn;
+};
 const handleVisitorClick = (visit) => {
   dialog.innerHTML = "";
-  dialog.append(getCloseModalHTMLButton(), getVisitorHTMLCard(visit));
+  dialog.append(
+    getCloseModalHTMLButton(),
+    getVisitorHTMLCard(visit),
+    getLoginModalBtn(visit)
+  );
+
   dialog.showModal();
 };
 
@@ -44,10 +58,13 @@ const getSearchBox = () => {
   queryInput.placeholder = "Search visitors";
   queryInput.className = "form-control my-4";
   queryInput.oninput = (e) => {
-    //לא סגור על השורה הבאה צריך לבדוק האם אורח או אורחים
-    visitor = visitorForView.filter((visit) =>
+    visitorForView = [...saveVisitorForView];
+    //לא סגור על השורה הבאה  ריך לבדוק האם אורח או אורחים
+    let visitor = visitorForView.filter((visit) =>
       visit.name.includes(e.target.value)
     );
+
+    visitorForView = [...visitor];
     renderProducts();
   };
   return queryInput;
@@ -79,6 +96,7 @@ const clearSearchBox = () => {
 
 const renderProducts = () => {
   const visitorCards = visitorForView.map(getVisitorHTMLCard);
+
   const visitorsPlaceholder = document.getElementById("view-visitor-form");
   visitorsPlaceholder.innerHTML = "";
 
@@ -88,7 +106,7 @@ const renderProducts = () => {
   visitorsPlaceholder.append(...visitorCards);
 };
 
-document.body.insertAdjacentElement("afterbegin", getSearchBox());
+// document.body.insertAdjacentElement("afterbegin", getSearchBox());
 window.addEventListener("load", renderProducts);
 
 function loginAsVisitor(visitorName) {
